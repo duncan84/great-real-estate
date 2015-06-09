@@ -35,6 +35,13 @@ if ( typeof jQuery !== 'undefined' ) {
                 };
 
                 map = new google.maps.Map( this, options );
+		//Storing map variable at top level to reference later
+		window['gre_map']=map;
+		//Simulating Google Maps V2 checkResize function
+		map.checkResize=function (){
+			google.maps.event.trigger(map,"resize");
+			map.setCenter(center);
+		};
 
                 marker = new google.maps.Marker({
                     position: center,
